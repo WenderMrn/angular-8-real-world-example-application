@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { AuthService } from './auth.services';
 import { ToastService } from '../components';
 
 // Cross field validation
-export const passwordCompareValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+export const passwordCompareValidator: ValidatorFn = (control: UntypedFormGroup): ValidationErrors | null => {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
     return password && confirmPassword && password.value === confirmPassword.value ? { passwordCompare: true } : null;
@@ -17,7 +17,7 @@ export const passwordCompareValidator: ValidatorFn = (control: FormGroup): Valid
     styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-    authForm: FormGroup;
+    authForm: UntypedFormGroup;
     authType = '';
     title = '';
     isSubmitting = false;
@@ -26,7 +26,7 @@ export class AuthComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private authService: AuthService,
         private toastService: ToastService) {
         this.authForm = this.fb.group({
@@ -41,7 +41,7 @@ export class AuthComponent implements OnInit {
             this.title = (this.authType === 'login') ? 'Please login here..' : 'Create a new account';
             this.buttonTitle = (this.authType === 'login') ? 'Login' : 'Register';
             if (this.authType === 'register') {
-                this.authForm.addControl('confirmPassword', new FormControl('', Validators.required));
+                this.authForm.addControl('confirmPassword', new UntypedFormControl('', Validators.required));
             }
         });
     }

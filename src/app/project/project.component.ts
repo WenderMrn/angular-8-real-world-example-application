@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,7 +19,7 @@ type FormErrors = { [u in UserFields]: string };
 export class ProjectComponent implements OnInit {
   title = 'todo-project';
   closeResult: string;
-  projectForm: FormGroup;
+  projectForm: UntypedFormGroup;
   projects: ResponseModel;
   action: string;
   modalRef: any;
@@ -38,7 +38,7 @@ export class ProjectComponent implements OnInit {
     private modalService: NgbModal,
     private projectService: ProjectService,
     private breadcrumbService: BreadcrumbService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private route: ActivatedRoute,
     private router: Router) {
     this.load();

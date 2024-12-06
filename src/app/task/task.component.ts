@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms';
 import { NgbModal, ModalDismissReasons, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from './task.service';
@@ -16,7 +16,7 @@ import { BreadcrumbService } from '../components/breadcrumb';
 export class TaskComponent implements OnInit {
   title = 'todo-tasks';
   closeResult: string;
-  taskForm: FormGroup;
+  taskForm: UntypedFormGroup;
   tasks: ResponseModel;
   action: string;
   modalRef: any;
@@ -29,7 +29,7 @@ export class TaskComponent implements OnInit {
     private modalService: NgbModal,
     public taskService: TaskService,
     private breadcrumbService: BreadcrumbService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private route: ActivatedRoute,
     private router: Router) {
   }
@@ -62,7 +62,7 @@ export class TaskComponent implements OnInit {
   open(content, action, task = null) {
     this.action = action;
     if (action === 'update') {
-      this.taskForm.addControl('statusType', new FormControl('', Validators.required));
+      this.taskForm.addControl('statusType', new UntypedFormControl('', Validators.required));
       const date = new Date(task.scheduleDate);
       const ngbDateStruct = { year: date.getFullYear(), month: date.getMonth(), day: date.getDate() };
       this.taskForm.setValue({
