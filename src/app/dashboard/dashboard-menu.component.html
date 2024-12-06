@@ -16,7 +16,7 @@
                 </a>
                 <div ngbDropdownMenu aria-labelledby="navbarDropdown">
                     <a ngbDropdownItem [routerLink]="['/dashboard/profile']">Profile</a>
-                    <a ngbDropdownItem [routerLink]="" (click)="logout()">Logout</a>
+                    <a ngbDropdownItem [routerLink]="[]" (click)="logout()">Logout</a>
                 </div>
             </li>
         </ul>
@@ -51,7 +51,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="" (click)="logout()">
+                        <a class="nav-link" [routerLink]="[]" (click)="logout()">
                             <i-feather name="log-out"></i-feather> Logout
                         </a>
                     </li>
